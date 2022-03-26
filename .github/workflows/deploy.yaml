@@ -2,7 +2,7 @@ name: Deploy Complex
 on:
   push:
     branches:
-      - main
+      - master
  
 jobs:
   build:
