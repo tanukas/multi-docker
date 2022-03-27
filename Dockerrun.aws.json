@@ -2,6 +2,8 @@
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [
         {
+            "memoryReservation": 256,
+            "cpu": 1,
             "name": "client",
             "image": "sag60068/multi-client",
             "hostname": "client",
