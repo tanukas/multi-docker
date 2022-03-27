@@ -2,8 +2,7 @@
     "AWSEBDockerrunVersion": 2,
     "containerDefinitions": [
         {
-            "memoryReservation": 256,
-            "cpu": 1,
+            "memory": 128,            
             "name": "client",
             "image": "sag60068/multi-client",
             "hostname": "client",
@@ -20,21 +19,24 @@
                 "containerPort": 80
                 }
             ],
-            "links": ["client", "server"]
+            "links": ["client", "server"],
+            "memory": 128    
 
         },
         {
             "name": "server",
             "image": "sag60068/multi-server",
             "hostname": "api",
-            "essential": false
+            "essential": false,
+            "memory": 128
 
         },
         {
             "name": "worker",
             "image": "sag60068/multi-worker",
             "hostname": "worker",
-            "essential": false
+            "essential": false,
+            "memory": 128    
 
         }
     ]
