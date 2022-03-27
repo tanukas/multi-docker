@@ -8,14 +8,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - uses: actions/checkout@v2     
       - run: docker build -t sag60068/react-test -f ./client/Dockerfile.dev ./client
       - run: docker run -e CI=true sag60068/react-test npm test -- --coverage
       - run: docker build -t sag60068/multi-client ./client
       - run: docker build -t sag60068/multi-nginx ./nginx
       - run: docker build -t sag60068/multi-server ./server
       - run: docker build -t sag60068/multi-worker ./worker
+      - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker push sag60068/multi-client
+      - run: docker push sag60068/multi-nginx
+      - run: docker push sag60068/multi-server
+      - run: docker push sag60068/multi-worker
 
  
       - name: Generate deployment package
